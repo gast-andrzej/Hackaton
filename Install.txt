@@ -3,6 +3,7 @@ step by step install ;)
 - download the project ;)
 
 -install python environment:
+    https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/
 
 -enter the command:
 pip install -r requirements.txt
