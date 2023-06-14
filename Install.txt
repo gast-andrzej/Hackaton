@@ -1,0 +1,16 @@
+step by step install ;)
+
+- download the project ;)
+
+-install python environment:
+
+-enter the command:
+pip install -r requirements.txt
+
+this will install everything from requirements.
+
+- enter your API keys into the text file API_KEY
+
+- Run applications from main.py
+
+Regards Andrzej Gast
