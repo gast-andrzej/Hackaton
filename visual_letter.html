@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Chatbot Function Example</title>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script>
+    // Function to send a message and receive a response from the chatbot
+    async function sendMessage() {
+      // Get the user input from the text input field
+      var message = document.getElementById("messageInput").value;
+
+      // Clear the input field
+      document.getElementById("messageInput").value = "";
+
+      // Display the user message in the chat window
+      var chatWindow = document.getElementById("chatWindow");
+      chatWindow.innerHTML += "<p>You: " + message + "</p>";
+
+      // Send the user message to the chatbot and get the response
+      var response = await getChatbotResponse(message);
+
+      // Display the chatbot response in the chat window
+      chatWindow.innerHTML += "<p>Chatbot: " + response + "</p>";
+    }
+
+    // Function to send a user message to the OpenAI Chat API and get the response
+    async function getChatbotResponse(message) {
+      // Your OpenAI API credentials
+      var apiKey = 'HERE WRITE API KEY !!!!';
+
+      // The OpenAI Chat API endpoint
+      var apiUrl = 'https://api.openai.com/v1/chat/completions';
+
+      // The data to send to the API
+      var data = {
+        "model": "gpt-3.5-turbo",
+        "messages": [
+          {"role": "system", "content": "You are a chatbot"},
+          {"role": "user", "content": message}
+        ]
+      };
+
+      // Send a POST request to the API
+      var response = await axios.post(apiUrl, data, {
+        headers: {
+          'Authorization': 'Bearer ' + apiKey,
+          'Content-Type': 'application/json'
+        }
+      });
+
+      // Extract and return the chatbot's response
+      return response.data.choices[0].message.content;
+    }
+  </script>
+</head>
+<body>
+  <h1>Generate Cover Letter under first prompt</h1>
+  <h2>please prepare me a cover letter in {language} for {company}
+    to encourage them to recruit me for {position}
+    taking into account my strengths such as {strong_side}
+    and turning my weak side as {weak_side} into my strengths.
+  </h2>
+  <div id="chatWindow"></div>
+  <input type="text" id="messageInput" placeholder="Type your message...">
+  <button onclick="sendMessage()">Send</button>
+</body>
+</html>
