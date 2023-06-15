@@ -21,9 +21,11 @@ def runnex():
     print('{0}: {1}\n'.format(conversation[-1]['role'].strip(), conversation[-1]['content'].strip()))
 
     job = input('What role you need? ')
-    language = input('What language interview you want: ')
+    job_str = str(job).lower()
+    language = input('What language interview you want (remember only small letter. example: polish, french, english): ')
+    language_str = str(language).lower()
 
-    user_first = f"conduct an interview with me for the position of {job} in {language} language, please ask me questions one at a time, after answering tell me in {language} language what mistakes I made in communication and how to expand my statement, also rate each of my answers on a scale of 1 to 100, but only after my answer. When I write the end of the conversation, give me the overall score of this conversation on a scale of 1 to 100"
+    user_first = f"conduct an interview with me for the position of {job_str} in {language_str}, please ask me questions one at a time, after answering tell me in {language} language what mistakes I made in communication and how to expand my statement, also rate each of my answers on a scale of 1 to 100, but only after my answer. When I write the end of the conversation, give me the overall score of this conversation on a scale of 1 to 100"
 
     #v2 user_first = f"interview me for a job for the {job} position, please ask me questions one at a time, after answering, tell me what mistakes I made in communication and how to expand my statement, but only after my answer"
 
